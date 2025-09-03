@@ -1,6 +1,7 @@
 const passwordInput = document.getElementById("password");
 const strengthDiv = document.getElementById("strength");
 
+
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
   let strength = 0;
