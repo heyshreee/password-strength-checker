@@ -22,9 +22,11 @@ h2 {
   margin-bottom: 20px;
 }
 
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
   width: 100%;
   padding: 12px;
+  padding-right: 40px;
   margin: 10px 0;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -39,6 +41,17 @@ input[type="password"] {
   border-radius: 6px;
   transition: all 0.3s ease;
 }
+
+#togglePassword {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
 
 .weak {
   color: #ff4d4d;

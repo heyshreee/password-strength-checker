@@ -1,6 +1,15 @@
 const passwordInput = document.getElementById("password");
 const strengthDiv = document.getElementById("strength");
 
+const togglePassword = document.getElementById("togglePassword");
+if (togglePassword) {
+  togglePassword.addEventListener("click", function () {
+    const type = passwordInput.type === "password" ? "text" : "password";
+    passwordInput.type = type;
+    togglePassword.textContent = type === "password" ? "🙈" : "👁️";
+  });
+}
+
 
 passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
