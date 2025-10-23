@@ -9,11 +9,59 @@
 <body>
   <div class="container">
     <h2>Password Strength Checker</h2>
-    <div style="position:relative; width:100%;">
-      <input type="password" id="password" placeholder="Enter your password" style="width:100%; padding-right:40px; box-sizing:border-box;">
-      <span id="togglePassword" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:18px;">🙈</span>
+
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Enter your password" aria-label="Password">
+      <button id="togglePassword" class="icon-btn" aria-label="Toggle visibility" title="Show/Hide">🙈</button>
+      <button id="copyPassword" class="icon-btn" aria-label="Copy password" title="Copy">📋</button>
     </div>
-    <div id="strength" class="strength">Enter a password</div>
+
+    <div class="meter" aria-hidden="false" aria-live="polite">
+      <div class="meter-bar" id="meterBar"></div>
+      <div class="meter-label" id="meterLabel">Enter a password</div>
+    </div>
+
+    <ul class="criteria" id="criteria">
+      <li data-criterion="length">At least 8 characters</li>
+      <li data-criterion="upper">Contains an uppercase letter (A-Z)</li>
+      <li data-criterion="lower">Contains a lowercase letter (a-z)</li>
+      <li data-criterion="number">Contains a number (0-9)</li>
+      <li data-criterion="special">Contains a special character (!@#$...)</li>
+    </ul>
+
+    <div class="stats">
+      <div><span class="stat-label">Entropy:</span> <span id="entropy">0 bits</span></div>
+      <div><span class="stat-label">Estimated crack time:</span> <span id="crackTime">—</span></div>
+    </div>
+
+    <div class="breach">
+      <label class="breach-toggle"><input type="checkbox" id="checkBreaches"> Check against breach database (HaveIBeenPwned)</label>
+      <div id="breachWarning" class="warning" hidden>⚠️ This password has appeared in data breaches!</div>
+    </div>
+
+    <div class="viz">
+      <div class="gen-row">
+        <label><input type="checkbox" id="enableViz" checked> Password DNA Visualization (Constellation)</label>
+      </div>
+      <div class="viz-canvas-wrap">
+        <canvas id="dnaCanvas"></canvas>
+      </div>
+    </div>
+
+    <div class="generator">
+      <div class="gen-row">
+        <label for="length">Length</label>
+        <input type="range" id="length" min="8" max="32" value="12">
+        <span id="lengthVal">12</span>
+      </div>
+      <div class="gen-row toggles">
+        <label><input type="checkbox" id="useUpper" checked> Uppercase</label>
+        <label><input type="checkbox" id="useLower" checked> Lowercase</label>
+        <label><input type="checkbox" id="useNumbers" checked> Numbers</label>
+        <label><input type="checkbox" id="useSymbols" checked> Symbols</label>
+      </div>
+      <button id="generate" class="primary-btn">Generate Strong Password</button>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
